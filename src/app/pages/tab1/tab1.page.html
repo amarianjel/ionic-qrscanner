@@ -1,5 +1,5 @@
 <ion-content>
-  <swiper-container>
+  <swiper-container [options]="swiperOpts">
       <swiper-slide>
           <ion-button (click)="scan()" expand="full" fill="outline" size="large" shape="round" *ngIf="!inProcess">
               Escanear código

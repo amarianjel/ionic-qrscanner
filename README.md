@@ -19,7 +19,11 @@
 # Ciclo de vida de un componente en Ionic
 https://ionicframework.com/docs/v3/api/navigation/NavController/#viewDidEnter
 
+
+# Android para correr
+```ionic build --prod --service-worker```
+```ionic capacitor run android -l --external```
 # Capacitor Plugins
 ```npm install @capacitor-community/barcode-scanner```
-https://danielsogl.gitbook.io/awesome-cordova-plugins/barcode-scanner
-
+```npx cap sync```
+ion
