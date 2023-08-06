@@ -23,6 +23,8 @@ https://ionicframework.com/docs/v3/api/navigation/NavController/#viewDidEnter
 # Android para correr
 ```ionic build --prod --service-worker```
 ```ionic capacitor run android -l --external```
+# Cordova
+https://danielsogl.gitbook.io/awesome-cordova-plugins/barcode-scanner
 # Capacitor Plugins
 ```npm install @capacitor-community/barcode-scanner```
 ```npx cap sync```
