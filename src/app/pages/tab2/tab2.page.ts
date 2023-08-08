@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-// import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx'; 
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -8,22 +9,43 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  // constructor(private barcodeScanner: BarcodeScanner) {}
+  constructor( private alertController: AlertController){}
 
-  // scan() {
-  //   this.barcodeScanner.scan().then((barcodeData) => {
-  //     console.log('Resultado del escaneo:', barcodeData.text);
-  //   }).catch((err) => {
-  //     console.error('Error en el escaneo:', err);
-  //   });
-  // }
+  async startScanner(){
+    const result = await BarcodeScanner.startScan();
+    console.log("~file: tab2.page.ts ~ line 16 ~ Tab2 ~ startScanner ~ result", result)
+  }
 
-  // scan(){
-  //   this.barcodeScanner.scan().then( barcodeScanner => {
-  //     console.log("Barcode data", this.barcodeScanner);
-  //   }).catch( err => {
-  //     console.log('Error ', err);
-  //   })
-  // }
+  async checkPermission(){
+    return new Promise(async ( resolve, reject ) => {
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      
+      if( status.granted ){
+        resolve( true );
+      }else if( status.denied ){
+        const alert = await this.alertController.create({
+          header: 'No hay permiso',
+          message:'Debes darle el permiso para usar la cámara.',
+          buttons:[{
+            text: 'No',
+            role:"cancel"
+          },{
+            text: 'Abrir Configuracion',
+            handler: () => {
+              resolve(false);
+              BarcodeScanner.openAppSettings();
+            }
+          }]
+        });
+
+        await alert.present();
+      }else{
+        resolve(false);
+      }
+    })
+
+
+
+  }
 
 }
