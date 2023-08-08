@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx'; 
+// import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx'; 
 
 @Component({
   selector: 'app-tab2',
@@ -8,15 +8,15 @@ import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 })
 export class Tab2Page {
 
-  constructor(private barcodeScanner: BarcodeScanner) {}
+  // constructor(private barcodeScanner: BarcodeScanner) {}
 
-  scan() {
-    this.barcodeScanner.scan().then((barcodeData) => {
-      console.log('Resultado del escaneo:', barcodeData.text);
-    }).catch((err) => {
-      console.error('Error en el escaneo:', err);
-    });
-  }
+  // scan() {
+  //   this.barcodeScanner.scan().then((barcodeData) => {
+  //     console.log('Resultado del escaneo:', barcodeData.text);
+  //   }).catch((err) => {
+  //     console.error('Error en el escaneo:', err);
+  //   });
+  // }
 
   // scan(){
   //   this.barcodeScanner.scan().then( barcodeScanner => {
