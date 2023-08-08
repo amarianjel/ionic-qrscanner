@@ -19,13 +19,59 @@
 # Ciclo de vida de un componente en Ionic
 https://ionicframework.com/docs/v3/api/navigation/NavController/#viewDidEnter
 
+### Desactivar Capacitor
+Desactivar Capacitor
+```ionic integrations disable capacitor```
 
-# Android para correr
-```ionic build --prod --service-worker```
-```ionic capacitor run android -l --external```
 # Cordova
 https://danielsogl.gitbook.io/awesome-cordova-plugins/barcode-scanner
+
+## Desplegar en Cordova
+```ionic cordova prepare android```
+Version para desplegar
+```ionic cordova build android```
+### Live Reload
+```ionic cordova run android -l```
+
+# Capacitor
+```ionic build --prod --service-worker```
+## Desplegar en Capacitor
+Generar carpeta www
+```ionic build```
+Para las instalaciones en capacitor: 
+```npm install @capacitor/android```
+```npx cap add android```
+Para correr: Este genera un build nuevo
+```npx cap run android```
+
+### Live Reload
+```ionic cap run android -l --external```
+
 # Capacitor Plugins
 ```npm install @capacitor-community/barcode-scanner```
 ```npx cap sync```
-ion
+
+Para manifest:
+https://www.npmjs.com/package/@capacitor-community/barcode-scanner
+
+
+```android
+<?xml version='1.0' encoding='utf-8'?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:usesCleartextTraffic="true" android:hardwareAccelerated="true">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" android:exported="true" android:label="@string/title_activity_main" android:launchMode="singleTask" android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBarLaunch">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+</manifest>
+
+```

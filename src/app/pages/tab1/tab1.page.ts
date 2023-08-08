@@ -17,24 +17,27 @@ export class Tab1Page {
   };
 
   public inProcess: boolean = false;
-
+ 
   constructor( private alertCtrl: AlertController, private toastCtrl: ToastController ) { }
-
+ 
   ionViewWillLeave() {
     console.log('ionViewWillLeave ');
     window.document.querySelector('body')?.classList.remove('scanner-active');
+ 
   }
-
+ 
   ionViewDidLeave() {
     console.log('ionViewDidLeave');
     BarcodeScanner.stopScan();
+ 
   }
-
+ 
   async scan() {
+ 
     this.inProcess = true;
     // Este es lo importante!
     window.document.querySelector('body')?.classList.add('scanner-active');
-
+ 
     // Check camera permission
     // This is just a simple example, check out the better checks below
     await BarcodeScanner.checkPermission({ force: true });
@@ -54,7 +57,7 @@ export class Tab1Page {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
   };
-
+ 
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: '¡Excelente!',
