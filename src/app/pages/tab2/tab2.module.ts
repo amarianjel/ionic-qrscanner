@@ -6,7 +6,6 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { QRCodeModule } from 'angularx-qrcode';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    QRCodeModule
   ],
   declarations: [Tab2Page]
 })

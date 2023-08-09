@@ -16,5 +16,7 @@ export class DataLocalService {
     
     const nuevoRegistro = new Registro( format, text );
     this.guardados.unshift( nuevoRegistro );
+
+    console.log(this.guardados)
   }
 }

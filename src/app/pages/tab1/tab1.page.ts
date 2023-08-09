@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-scanner';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { DataLocalService } from 'src/app/services/data-local.service';
-
 
 @Component({
   selector: 'app-tab1',
@@ -18,7 +17,7 @@ export class Tab1Page {
 
   public inProcess: boolean = false;
 
-  constructor( private alertCtrl: AlertController, private toastCtrl: ToastController ) { }
+  constructor( private alertCtrl: AlertController, private dataLocal: DataLocalService ) { }
 
   ionViewWillLeave() {
     console.log('ionViewWillLeave ');
@@ -31,22 +30,25 @@ export class Tab1Page {
   }
 
   async scan() {
+
+
+    
+
     this.inProcess = true;
     // Este es lo importante!
     window.document.querySelector('body')?.classList.add('scanner-active');
     console.log("Entrooooo web")
-
-    // Check camera permission
-    // This is just a simple example, check out the better checks below
+    // Comprobar el permiso de la cámara
+    // Este es solo un ejemplo simple, mira las mejores comprobaciones a continuación
     await BarcodeScanner.checkPermission({ force: true });
-    // make background of WebView transparent
-    // note: if you are using ionic this might not be enough, check below
+    // hacer transparente el fondo de WebView
+    // nota: si está utilizando ionic, esto podría no ser suficiente, verifique a continuación
     BarcodeScanner.hideBackground();
     const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] }); // start scanning and wait for a result
     // if the result has content
     if (result.hasContent) {
-      console.log(result.content); // log the raw scanned content
-      // this.stopScan()
+      console.log('BarcoData', result.content); // registrar el contenido escaneado sin procesar
+      //this.stopScan()
       this.presentAlert();
     }
   }
@@ -59,7 +61,7 @@ export class Tab1Page {
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: '¡Excelente!',
-      // subHeader: 'La asistencia se registró correctamente',
+      subHeader: 'La asistencia se registró correctamente',
       message: 'La asistencia se guardó correctamente',
       buttons: [
         {

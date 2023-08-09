@@ -1,9 +1,11 @@
+
+
 export class Registro {
 
     public format: string;
     public text: string;
-    public type: string | any;
-    public icon: string | any;
+    public type?: string;
+    public icon?: string;
     public created: Date;
 
     constructor( format: string, text: string ) {
@@ -38,5 +40,8 @@ export class Registro {
                 this.type = 'No reconocido';
                 this.icon = 'create';
         }
+
     }
+
+
 }
