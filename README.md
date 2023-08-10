@@ -75,3 +75,10 @@ https://www.npmjs.com/package/@capacitor-community/barcode-scanner
 </manifest>
 
 ```
+
+# InAppBrowser por Browser de Capacitor
+https://ionicframework.com/docs/native/browser
+```
+npm install @capacitor/browser
+npx cap sync
+```
