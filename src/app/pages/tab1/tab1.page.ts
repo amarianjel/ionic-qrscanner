@@ -3,6 +3,7 @@ import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-sc
 import { AlertController } from '@ionic/angular';
 import { DataLocalService } from 'src/app/services/data-local.service';
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -17,39 +18,48 @@ export class Tab1Page {
 
   public inProcess: boolean = false;
 
-  constructor( private alertCtrl: AlertController, private dataLocal: DataLocalService ) { }
+  constructor( private alertCtrl: AlertController, private dataLocal: DataLocalService) { }
 
-  ionViewWillLeave() {
-    console.log('ionViewWillLeave ');
-    window.document.querySelector('body')?.classList.remove('scanner-active');
+  ionViewWillEnter() {
+    //console.log('viewWillEnter');
+  }
+  
+  ionViewDidEnter() {
+    //console.log('viewDidEnter');
   }
 
   ionViewDidLeave() {
-    console.log('ionViewDidLeave');
-    BarcodeScanner.stopScan();
+    //console.log('ionViewDidLeave');
+    //BarcodeScanner.stopScan();
+  }
+
+
+  ionViewWillLeave() {
+    //console.log('ionViewWillLeave ');
+    window.document.querySelector('body')?.classList.remove('scanner-active');
   }
 
   async scan() {
-
-
-    
-
     this.inProcess = true;
-    // Este es lo importante!
+    /* README:  Este es lo importante 
+    1-. Se abre un nuevo metodo
+    2-. Verifico el permiso de la camára
+    3-. hago transparente el fondo
+    */
     window.document.querySelector('body')?.classList.add('scanner-active');
-    console.log("Entrooooo web")
-    // Comprobar el permiso de la cámara
-    // Este es solo un ejemplo simple, mira las mejores comprobaciones a continuación
     await BarcodeScanner.checkPermission({ force: true });
-    // hacer transparente el fondo de WebView
-    // nota: si está utilizando ionic, esto podría no ser suficiente, verifique a continuación
     BarcodeScanner.hideBackground();
+
+    // README: Tomo el objeto
     const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] }); // start scanning and wait for a result
-    // if the result has content
+
     if (result.hasContent) {
       console.log('BarcoData', result.content); // registrar el contenido escaneado sin procesar
+      this.dataLocal.guardarRegistro( result.format, result.content );
       //this.stopScan()
       this.presentAlert();
+    }else{
+      this.dataLocal.guardarRegistro( 'QRCode', 'https://fernando-herrera.com' );
     }
   }
 

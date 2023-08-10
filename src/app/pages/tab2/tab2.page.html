@@ -1,32 +1,38 @@
-<!-- <ion-header [style.visibility]="content_visibility">
-  <ion-toolbar color="primary">
+<ion-header no-border>
+  <ion-toolbar>
     <ion-title>
-      QR Code
+      Historial
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="enviarCorreo()"
+                  color="primary">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
-<!-- <ion-content [style.visibility]="content_visibility">
+<ion-content>
 
-  <ion-card class="ion-text-center">
-    <ion-card-content>
-      <qrcode 
-        [qrdata]="qrCodeString" 
-        [width]="256" 
-        [errorCorrectionLevel]="'M'">
-      </qrcode>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-button 
-    expand="block" 
-    class="ion-margin" 
-    (click)="startScan()">
-    Scan QR Code
-  </ion-button>
-
-  <ion-item *ngIf="scannedResult">
-    <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
-  </ion-item>
   
-</ion-content> -->
+  <ion-list>
+
+    <ion-item *ngFor="let registro of dataLocal.guardados"
+              (click)="abrirRegistro( registro )"
+              detail>
+      <ion-icon slot="start" 
+                [name]="registro.icon"
+                color="primary"></ion-icon>
+      <ion-label>
+        <h2>{{ registro.text }}</h2>
+        <p>{{ registro.created | date: 'medium' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
+
+</ion-content>

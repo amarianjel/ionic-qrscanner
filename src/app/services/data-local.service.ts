@@ -10,7 +10,7 @@ export class DataLocalService {
   guardados: Registro[] = [];
 
 
-  constructor( private storage: Storage ) {}
+  constructor(  ) {}
 
   guardarRegistro( format: string, text: string ){
     
