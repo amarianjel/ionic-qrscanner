@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Registro } from '../models/registro.model';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +10,22 @@ export class DataLocalService {
   guardados: Registro[] = [];
 
 
-  constructor(  ) {}
+  constructor( private storage: Storage ) {
+    this.cargarStorage();
+  }
 
-  guardarRegistro( format: string, text: string ){
+  async guardarRegistro( format: string, text: string ){
+
+    await this.cargarStorage();
     
     const nuevoRegistro = new Registro( format, text );
     this.guardados.unshift( nuevoRegistro );
 
-    console.log(this.guardados)
+    console.log(this.guardados);
+    this.storage.set('registros', this.guardados);
+  }
+
+  async cargarStorage() {
+    this.guardados = await this.storage.get('registros') || [];
   }
 }
