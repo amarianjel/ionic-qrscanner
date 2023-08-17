@@ -36,7 +36,7 @@ export class MapaPage implements OnInit {
   //   this.createMap();
   // }
   
-  //FIXME: Solucionar activar cuenta de maps
+  //FIXME: Solucionar activar cuenta de maps 
   async createMap() {
     this.newMap = await GoogleMap.create({
       id: 'map',
