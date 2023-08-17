@@ -55,7 +55,7 @@ export class DataLocalService {
         break;
 
       case 'geo':
-        this.navCtrl.navigateForward(`/tabs/tab2/mapa/${ registro.text }`);
+        this.navCtrl.navigateForward(`/tabs/tab2/mapa/${ registro.text }`); 
         break;
 
     }

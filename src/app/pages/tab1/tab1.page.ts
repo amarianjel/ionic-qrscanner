@@ -49,6 +49,7 @@ export class Tab1Page {
     window.document.querySelector('body')?.classList.add('scanner-active');
     await BarcodeScanner.checkPermission({ force: true });
     BarcodeScanner.hideBackground();
+    
 
     // README: Tomo el objeto
     const result = await BarcodeScanner.startScan({ targetedFormats: [SupportedFormat.QR_CODE] }); // start scanning and wait for a result
@@ -59,7 +60,8 @@ export class Tab1Page {
       //this.stopScan()
       this.presentAlert();
     }else{
-      this.dataLocal.guardarRegistro( 'QRCode', 'https://fernando-herrera.com' );
+      // this.dataLocal.guardarRegistro( 'QRCode', 'https://fernando-herrera.com' );
+      this.dataLocal.guardarRegistro( 'QRCode', 'geo:80.73151796986687,-74.06087294062502' );
     }
   }
 
