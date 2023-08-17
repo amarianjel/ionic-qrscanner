@@ -83,55 +83,6 @@ npm install @capacitor/browser
 npx cap sync
 ```
 
-# Api Key Google Maps
+# Api Key Google Maps y Capacitor
 
-Para utilizar la API de Google Maps en tu aplicación, necesitarás una API Key válida. Aquí hay una guía paso a paso sobre cómo obtener y usar una API Key de Google Maps:
-
-Paso 1: Obtener una API Key de Google Maps
-
-Accede a la Consola de Google Cloud.
-Crea un nuevo proyecto o selecciona uno existente.
-En el panel de navegación, selecciona "API y servicios" > "Credenciales".
-Haz clic en el botón "Crear credenciales" y elige "Clave de API".
-Se generará una nueva API Key. Puedes configurar restricciones de uso si lo deseas (por ejemplo, restringir por dominio, aplicación, etc.).
-Copia la API Key generada, ya que la necesitarás en tu aplicación.
-Paso 2: Agregar la API Key a tu Aplicación
-
-1-. En tu proyecto Ionic, instala el paquete @agm/core que es un paquete de Angular para Google Maps.
-
-```npm install @agm/core```
-
-2-. Importa el módulo AgmCoreModule en tu módulo raíz (app.module.ts).
-```ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AgmCoreModule } from '@agm/core';
-
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'TU_API_KEY' // Reemplaza con tu API Key
-    })
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule {}
-```
-3-. En tu componente donde deseas usar el mapa, puedes agregar la etiqueta <agm-map> para mostrar el mapa de Google. Asegúrate de que esta etiqueta esté dentro del componente del módulo importado AgmCoreModule.
-
-```html
-<agm-map [latitude]="latitud" [longitude]="longitud" [zoom]="zoom">
-  <agm-marker [latitude]="latitud" [longitude]="longitud"></agm-marker>
-</agm-map>
-```
-
-Asegúrate de reemplazar latitud, longitud y zoom con los valores adecuados para tu mapa.
-
-4-. Agrega estilos y ajustes adicionales según tus necesidades. Puedes consultar la documentación oficial de @agm/core para obtener más detalles sobre cómo personalizar y configurar el mapa.
-
-5-. Ejecuta tu aplicación y deberías ver el mapa de Google en la ubicación especificada.
-Recuerda que la API Key es sensible y debe mantenerse segura. Siempre asegúrate de configurar restricciones de uso adecuadas y seguir las políticas de uso de Google Maps.
+[Doc de Capacitor](https://ionicframework.com/docs/native/google-maps)
